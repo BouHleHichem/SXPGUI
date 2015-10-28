@@ -43,6 +43,7 @@
                   <Hyperlink fx:id="registration" onAction="#handleRegistration" text="Registration" GridPane.columnIndex="1" />
                </children>
             </GridPane>
+            <Label fx:id="label1" text="Label" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>
