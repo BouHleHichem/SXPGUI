@@ -55,7 +55,15 @@ public class LoginController implements Initializable {
     @FXML
     public void handleSignIn() {
         // TODO 
-        //controller.ManagerBridge.login("dd", "dd");
+        if(userName.getText() != "" && password.getText()!= ""){
+                if(/*controller.ManagerBridge.login(userName.getText(), userName.getText())*/ true){
+                    // redirection par la page principale
+                }
+            }
+        else{
+            label1.setText("erreur");
+            System.err.println("oooooo");
+            }
     }
     @FXML
     public void handleRegistration(){
