@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sxpgui.SXPGUI;
@@ -55,9 +56,10 @@ public class LoginController implements Initializable {
     @FXML
     public void handleSignIn() {
         // TODO 
-        if(userName.getText() != "" && password.getText()!= ""){
+        if(!userName.getText().equals("") && !password.getText().equals("")){
                 if(/*controller.ManagerBridge.login(userName.getText(), userName.getText())*/ true){
                     // redirection par la page principale
+                            goToMainFrame();
                 }
             }
         else{
@@ -98,6 +100,28 @@ public class LoginController implements Initializable {
     }
     }
     
+    
+    public void goToMainFrame(){
+            try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(SXPGUI.class.getResource("controller/mainFrame.fxml"));
+            VBox page = (VBox) loader.load();
+
+            // Create the dialog Stage.
+            mainStage.hide();
+            Scene scene = new Scene(page);
+            mainStage.setScene(scene);
+            mainStage.show();
+            // Set the person into the controller.
+        
+
+        // Show the dialog and wait until the user closes it
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
     
 
     /**
