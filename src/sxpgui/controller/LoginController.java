@@ -22,7 +22,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sxpgui.SXPGUI;
-import sxpgui.SXPGUI;
 
 /**
  * FXML Controller class
@@ -69,10 +68,10 @@ public class LoginController implements Initializable {
     }
     @FXML
     public void handleRegistration(){
-        showRgistrationDialog();
+        showRegistrationDialog();
     }
     
-    public boolean showRgistrationDialog(){
+    public boolean showRegistrationDialog(){
         try {
         // Load the fxml file and create a new stage for the popup dialog.
         FXMLLoader loader = new FXMLLoader();

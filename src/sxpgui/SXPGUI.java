@@ -5,13 +5,19 @@
  */
 package sxpgui;
 
+import java.util.Observable;
 import sxpgui.controller.LoginController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.data.item.Category;
+import model.data.user.User;
+import sxpgui.model.Item;
 
 /**
  *
@@ -19,10 +25,13 @@ import javafx.stage.Stage;
  */
 public class SXPGUI extends Application {
     
+            public static ObservableList<Item> myObjects = FXCollections.observableArrayList();
+            
     //private BorderPane rootLayout;
     @Override
     public void start(Stage stage) throws Exception {        
         try{
+                    populateObjectList();
             FXMLLoader loader = new FXMLLoader();
            
             loader.setLocation(SXPGUI.class.getResource("controller/login.fxml"));
@@ -43,6 +52,12 @@ public class SXPGUI extends Application {
     public static void main(String[] args) {
          //model.Application.main(args);
         launch(args);
+    }
+    
+    public void populateObjectList(){
+                User user = new User("test", " ", "Doe", "John", "john.doe@sxp.com", "+33442044204");
+                Item item = new Item(new model.data.item.Item(user, "Potatoes", new Category(Category.CATEGORY.FoodAndBeverages), "Great potatoes", "", "FRANCE", "Call me", 0L, 0L, model.data.item.Item.TYPE.OFFER));
+                myObjects.add(item);
     }
     
 }
