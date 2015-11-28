@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sxpgui.controller.SearchUserController">
+   <children>
+      <AnchorPane prefHeight="135.0" prefWidth="600.0">
+         <children>
+            <BorderPane layoutX="128.0" prefHeight="148.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <Label text="Search an user :             " BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Button fx:id="btnfin" mnemonicParsing="false" onAction="#handleBtnSearch" prefHeight="25.0" prefWidth="133.0" text="Search" BorderPane.alignment="CENTER" />
+               </right>
+               <center>
+                  <TextField prefHeight="25.0" prefWidth="256.0" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                  <Label text="List of users found" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="266.0" prefWidth="600.0">
+         <children>
+            <TableView layoutX="113.0" layoutY="66.0" prefHeight="266.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="188.0" text="Name" />
+                <TableColumn prefWidth="411.0" text="Email" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>
