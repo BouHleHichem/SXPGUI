@@ -40,6 +40,7 @@ public void start(Stage stage) throws Exception {
                                     public void handle(WindowEvent event) {
                                         controller.ManagerBridge.logout();
                                         model.Application.getInstance().close();
+                                        
                                         Platform.exit();
                                         System.exit(0);
                                                 }
