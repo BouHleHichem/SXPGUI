@@ -41,6 +41,9 @@ public class ButtonCell extends TableCell<Record, Boolean> {
             if(!empty){
                         setGraphic(cellButton);
                         }
+            else{
+               setGraphic( null );
+            }
         }
         }
         
