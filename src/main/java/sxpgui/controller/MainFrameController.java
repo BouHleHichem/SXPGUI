@@ -32,6 +32,8 @@ import sxpgui.model.Item;
  *
  * @author ZONGO
  */
+
+
 public class MainFrameController implements Initializable{
     
      ArrayList<model.data.item.Item> maliste= new ArrayList<model.data.item.Item>();
@@ -97,21 +99,45 @@ public class MainFrameController implements Initializable{
             
             @FXML
             public void showAddItemDialog(){
-                        
-                    
                         try {
                                     FXMLLoader loader = new FXMLLoader();
                                     loader.setLocation(SXPGUI.class.getResource("controller/addItem.fxml"));
                                     AnchorPane pane = loader.load();
                                     Stage dialogStage = new Stage();
-                                    dialogStage.setTitle("Objects");
+                                    dialogStage.setTitle("Add new item");
                                     dialogStage.initModality(Modality.WINDOW_MODAL);
                                     Scene scene = new Scene(pane);
                                     dialogStage.setScene(scene);
                                     AddItemController addItemController=loader.getController();
                                     addItemController.setStage(dialogStage);
-                                    
                                     dialogStage.show();
+                                    }
+                        catch (Exception e) {
+                                    e.printStackTrace();
+                                    }
+            }
+            
+            @FXML
+            public void showUpdateItemDialog(){
+                        try {
+                                    Item item = tableView.getSelectionModel().getSelectedItem();
+                                   if(item == null){
+                                               
+                                                }
+                                   else{
+                                               FXMLLoader loader = new FXMLLoader();
+                                                loader.setLocation(SXPGUI.class.getResource("controller/addItem.fxml"));
+                                                AnchorPane pane = loader.load();
+                                                Stage dialogStage = new Stage();
+                                                dialogStage.setTitle("Update item");
+                                                dialogStage.initModality(Modality.WINDOW_MODAL);
+                                                Scene scene = new Scene(pane);
+                                                dialogStage.setScene(scene);
+                                                AddItemController addItemController=loader.getController();
+                                                addItemController.initForm(item);
+                                                addItemController.setStage(dialogStage);
+                                                dialogStage.show();
+                                                }
                                     }
                         catch (Exception e) {
                                     e.printStackTrace();
