@@ -7,6 +7,8 @@ package sxpgui.controller;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -31,6 +33,8 @@ import javafx.stage.Stage;
 import model.data.item.Category;
 import sxpgui.SXPGUI;
 import sxpgui.model.Item;
+import sxpgui.util.Verification;
+import util.DateConverter;
 
 /**
  * FXML Controller class
@@ -65,6 +69,7 @@ public class AddItemController extends Application implements Initializable {
             private Button cancel ;
             
             private Stage stage;
+            private boolean updating = false;
             
             private ObservableList<String> listCat = FXCollections.observableArrayList();
             private ObservableList<String> listType = FXCollections.observableArrayList();
@@ -78,17 +83,14 @@ public class AddItemController extends Application implements Initializable {
         ArrayList catList = Category.getAllCategorie();
         for (int i=0 ; i<catList.size(); i++){
             listCat.add((String) catList.get(i));
-            
-            System.out.println(catList.get(0));
-        }
+            }
         categorie.setItems(listCat);
         
          // ** récuperation de type
          listType.add("WISH");
          listType.add("PROPOSAL");
          type.setItems(listType);
-         
-        
+
     }    
 
 
@@ -99,9 +101,19 @@ public class AddItemController extends Application implements Initializable {
             Scene scen = new Scene(page);
             //bntAddItem.setId("bevel-grey");
             primaryStage.setScene(scen);
-            
-
     }
+    
+public void initForm(Item item){
+            title.setText(item.getTitle());
+            type.getSelectionModel().select(item.getType());
+            //lifeTime.setValue(new LocalDateTime());
+            categorie.getSelectionModel().select(item.getCategory());
+            description.setText(item.getDescription());
+            country.setText(item.getCountry());
+            contact.setText(item.getContact());
+            add.setText("Modify");
+            updating = true;
+            }
     
     @FXML
     public void handleCancel(){
@@ -110,35 +122,32 @@ public class AddItemController extends Application implements Initializable {
     }
     @FXML
     public void handleAdd(){
-                //model.data.item.Item item = new model.data.item.Item
-             //TODO
+            //model.data.item.Item item = new model.data.item.Item
+            //TODO
             if(title.getText() != "" && country.getText()!= "" && lifeTime.isEditable() == true){
-                String titleValue=title.getText();
-                String catValue=categorie.getSelectionModel().getSelectedItem().toString();
-                String descValue=description.getText();
-                //String imageValue=file.getText(); on rajout l'image aprés
-                String contryValue=country.getText();
-                String contactValue=contact.getText();
-                String dateValue=lifeTime.getEditor().getText();
-                String typeValue=type.getSelectionModel().getSelectedItem().toString();
-                
-                System.out.println(titleValue+" "+ catValue+" "+descValue+" "+contryValue+" "+contactValue+" "+dateValue+" "+typeValue);
-                
-                String key = controller.ManagerBridge.addItem(titleValue, catValue, descValue, "image", contryValue, contactValue, dateValue, typeValue);
-                System.out.println("\nKEy :"+key+"\n\n");
-                Item item1=new Item();
-                item1.setItemKey(key);
-                item1.setTitle(titleValue);
-                item1.setCategory(catValue);
-                item1.setDescription(descValue);
-                item1.setImage("");
-                item1.setCountry(contryValue);
-                item1.setContact(contactValue);
-                item1.setDate(dateValue);
-                item1.setType(typeValue);
-                
-                SXPGUI.myObjects.add(item1);
-                stage.close();
+                        String titleValue=title.getText();
+                        String catValue=categorie.getSelectionModel().getSelectedItem().toString();
+                        String descValue=description.getText();
+                        //String imageValue=file.getText(); on rajout l'image aprés
+                        String contryValue=country.getText();
+                        String contactValue=contact.getText();
+                        String dateValue=lifeTime.getEditor().getText();
+                        dateValue = Verification.dateConverter(dateValue);
+                        String typeValue=type.getSelectionModel().getSelectedItem().toString();
+                        String key = controller.ManagerBridge.addItem(titleValue, catValue, descValue, "image", contryValue, contactValue, dateValue, typeValue);
+                        Item item1=new Item();
+                        item1.setItemKey(key);
+                        item1.setTitle(titleValue);
+                        item1.setCategory(catValue);
+                        item1.setDescription(descValue);
+                        item1.setImage("");
+                        item1.setCountry(contryValue);
+                        item1.setContact(contactValue);
+                        item1.setDate(dateValue);
+                        item1.setType(typeValue);
+
+                        SXPGUI.myObjects.add(item1);
+                        stage.close();
             }
         else{
            
